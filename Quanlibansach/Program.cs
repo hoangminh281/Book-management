@@ -24,7 +24,7 @@ namespace Quanlibansach
         public static String path_updateProduct = "https://cuongmanh2311.000webhostapp.com/products/update";
         public static String path_destroyProduct = "https://cuongmanh2311.000webhostapp.com/products/destroy/";
         public static String path_signin = "https://cuongmanh2311.000webhostapp.com/users/login";
-        public static String path_getPermission = "https://cuongmanh2311.000webhostapp.com/permission/show/";
+        public static String path_AllPermission = "https://cuongmanh2311.000webhostapp.com/permission";
         public static String path_storeUser = "https://cuongmanh2311.000webhostapp.com/users/store";
         public static String path_updateUser = "https://cuongmanh2311.000webhostapp.com/users/update";
         public static String path_destroyUser = "https://cuongmanh2311.000webhostapp.com/users/destroy/";
