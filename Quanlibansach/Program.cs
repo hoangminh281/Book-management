@@ -39,7 +39,7 @@ namespace Quanlibansach
         public static String path_destroyRent = "https://cuongmanh2311.000webhostapp.com/rent/destroy/";
         public static String path_storePermission = "https://cuongmanh2311.000webhostapp.com/permission/store";
         public static String path_updatePermission = "https://cuongmanh2311.000webhostapp.com/permission/update";
-        public static String path_destroyPermission = "https://cuongmanh2311.000webhostapp.com/permission/delete/";
+        public static String path_destroyPermission = "https://cuongmanh2311.000webhostapp.com/permission/destroy/";
 
         public static Category[] getAllCategory()
         {
@@ -80,6 +80,23 @@ namespace Quanlibansach
             try
             {
                 HttpWebRequest request = WebRequest.CreateHttp(Program.path_getPermissionbelow + "?role=" + role);
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(Permission[]));
+                object responseData = json.ReadObject(response.GetResponseStream());
+                return responseData as Permission[];
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return null;
+        }
+
+        public static Permission[] getAllPermission()
+        {
+            try
+            {
+                HttpWebRequest request = WebRequest.CreateHttp(Program.path_AllPermission);
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;
                 DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(Permission[]));
                 object responseData = json.ReadObject(response.GetResponseStream());

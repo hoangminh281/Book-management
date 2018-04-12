@@ -31,7 +31,6 @@ namespace Quanlibansach
             btnDangnhap_ItemClick(sender, new ItemClickEventArgs(btnDangnhap, link1));
 
             btnDangxuat.Enabled = false;
-            btnDangky.Enabled = false;
             btnKhosach.Enabled = false;
             btnUsers.Enabled = false;
             btnLoaisach.Enabled = false;
@@ -43,7 +42,6 @@ namespace Quanlibansach
         {
             btnDangnhap.Enabled = false;
             btnDangxuat.Enabled = true;
-            btnDangky.Enabled = true;
             btnKhosach.Enabled = true;
             btnUsers.Enabled = true;
             btnLoaisach.Enabled = true;
@@ -109,7 +107,6 @@ namespace Quanlibansach
         {
             btnDangnhap.Enabled = true;
             btnDangxuat.Enabled = false;
-            btnDangky.Enabled = false;
             btnKhosach.Enabled = false;
             btnUsers.Enabled = false;
 
@@ -131,6 +128,7 @@ namespace Quanlibansach
                 fUser.MdiParent = this;
                 fUser.Show();
                 if (fRent != null) fUser.refreshProductUserDlg += fRent.refreshProductUser;
+                if (fPermission != null) fPermission.refreshPermission += fUser.refreshPermission;
             }
         }
 
@@ -156,6 +154,7 @@ namespace Quanlibansach
                 fPermission = new frmPermission();
                 fPermission.MdiParent = this;
                 fPermission.Show();
+                if (fUser != null) fPermission.refreshPermission += fUser.refreshPermission;
             }
         }
 

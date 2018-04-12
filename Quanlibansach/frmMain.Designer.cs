@@ -34,7 +34,6 @@
             this.btnDangnhap = new DevExpress.XtraBars.BarButtonItem();
             this.txtUserInfo = new DevExpress.XtraBars.BarStaticItem();
             this.btnDangxuat = new DevExpress.XtraBars.BarButtonItem();
-            this.btnDangky = new DevExpress.XtraBars.BarButtonItem();
             this.btnKhosach = new DevExpress.XtraBars.BarButtonItem();
             this.btnUsers = new DevExpress.XtraBars.BarButtonItem();
             this.btnLoaisach = new DevExpress.XtraBars.BarButtonItem();
@@ -42,7 +41,6 @@
             this.btnRent = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -62,7 +60,6 @@
             this.btnDangnhap,
             this.txtUserInfo,
             this.btnDangxuat,
-            this.btnDangky,
             this.btnKhosach,
             this.btnUsers,
             this.btnLoaisach,
@@ -98,15 +95,6 @@
             this.btnDangxuat.Id = 6;
             this.btnDangxuat.Name = "btnDangxuat";
             this.btnDangxuat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDangxuat_ItemClick);
-            // 
-            // btnDangky
-            // 
-            this.btnDangky.Caption = "Đăng ký";
-            this.btnDangky.Glyph = ((System.Drawing.Image)(resources.GetObject("btnDangky.Glyph")));
-            this.btnDangky.Id = 6;
-            this.btnDangky.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnDangky.LargeGlyph")));
-            this.btnDangky.Name = "btnDangky";
-            this.btnDangky.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDangky_ItemClick);
             // 
             // btnKhosach
             // 
@@ -154,7 +142,6 @@
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
-            this.ribbonPageGroup2,
             this.ribbonPageGroup4,
             this.ribbonPageGroup3,
             this.ribbonPageGroup5,
@@ -168,11 +155,6 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.btnDangnhap);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnDangxuat);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            // 
-            // ribbonPageGroup2
-            // 
-            this.ribbonPageGroup2.ItemLinks.Add(this.btnDangky);
-            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             // 
             // ribbonPageGroup4
             // 
@@ -242,9 +224,7 @@
         private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager xtraTabbedMdiManager1;
         private DevExpress.XtraBars.BarStaticItem txtUserInfo;
         private DevExpress.XtraBars.BarButtonItem btnDangxuat;
-        private DevExpress.XtraBars.BarButtonItem btnDangky;
         private DevExpress.XtraBars.BarButtonItem btnKhosach;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.BarButtonItem btnUsers;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;

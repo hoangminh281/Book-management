@@ -18,6 +18,7 @@ namespace Quanlibansach
         {
             InitializeComponent();
         }
+
         private void frmDangky_Load(object sender, EventArgs e)
         {
             Permission[] arrPer = Program.getPermissionbelow(Program.user.role);

@@ -179,8 +179,7 @@ namespace Quanlibansach
         private void btnRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             //lay data do vao gridcontrol
-            User[] userList = Program.getUserbelow(Program.user.role);
-            gcUser.DataSource = userList;
+            refreshPermission();
             //tuy chinh menu
             gcChitiet.Enabled = false;
             gcUser.Enabled = true;
@@ -193,6 +192,12 @@ namespace Quanlibansach
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             this.Close();
+        }
+
+        public void refreshPermission()
+        {
+            User[] userList = Program.getUserbelow(Program.user.role);
+            gcUser.DataSource = userList;
         }
     }
 }

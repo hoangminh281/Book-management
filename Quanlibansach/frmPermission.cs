@@ -16,6 +16,8 @@ namespace Quanlibansach
     {
         mode status;
         enum mode { them, sua };
+        public delegate void onRefreshPermission();
+        public onRefreshPermission refreshPermission;
 
         public frmPermission()
         {
@@ -86,7 +88,7 @@ namespace Quanlibansach
                 {
                     Program.sendRequest(request, "POST", per.toStringStore());
                     MessageBox.Show("Thêm quyền thành công");
-                    //if (refreshTreeview != null) refreshTreeview();
+                    refreshPermission();
                 }
                 catch (Exception ex)
                 {
@@ -102,7 +104,7 @@ namespace Quanlibansach
                 {
                     Program.sendRequest(request, "POST", per.toStringUpdate());
                     MessageBox.Show("Sửa quyền thành công");
-                    //if (refreshTreeview != null) refreshTreeview();
+                    refreshPermission();
                 }
                 catch (Exception ex)
                 {
@@ -131,7 +133,7 @@ namespace Quanlibansach
                     Program.sendRequest(request);
                     MessageBox.Show("Xóa quyền thành công");
                     btnRefresh_ItemClick(sender, e);
-                    //if (refreshTreeview != null) refreshTreeview();
+                    refreshPermission();
                 }
                 catch (Exception ex)
                 {
@@ -142,7 +144,7 @@ namespace Quanlibansach
 
         private void btnRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Permission[] per = Program.getPermissionbelow(Program.user.role);
+            Permission[] per = Program.getAllPermission();
             if (per == null) return;
             gcPermission.DataSource = per;
             GvPermission_FocusedRowChanged(sender, new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs(gvPermission.FocusedRowHandle,gvPermission.FocusedRowHandle));
