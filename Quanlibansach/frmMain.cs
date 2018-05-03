@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraBars;
+using DevExpress.LookAndFeel;
 
 namespace Quanlibansach
 {
@@ -22,6 +23,12 @@ namespace Quanlibansach
         public frmMain()
         {
             InitializeComponent();
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            
+
         }
 
         private void frmMain_Shown(object sender, EventArgs e)
@@ -98,7 +105,11 @@ namespace Quanlibansach
                 fSanpham = new frmSanpham();
                 fSanpham.MdiParent = this;
                 fSanpham.Show();
-                if (fRent!=null) fSanpham.refreshProductUserDlg += fRent.refreshProductUser;
+                if (fRent != null)
+                {
+                    fSanpham.refreshProductUserDlg += fRent.refreshProductUser;
+                    fRent.refreshProductDlg += fSanpham.refreshProducts;
+                }
                 if (fLoaisach != null) fLoaisach.refreshTreeview += fSanpham.refreshTreeview;
             }
         }
@@ -109,6 +120,9 @@ namespace Quanlibansach
             btnDangxuat.Enabled = false;
             btnKhosach.Enabled = false;
             btnUsers.Enabled = false;
+            btnLoaisach.Enabled = false;
+            btnPermission.Enabled = false;
+            btnRent.Enabled = false;
 
             txtUserInfo.Caption = "Information user";
             Program.user = null;
@@ -168,7 +182,23 @@ namespace Quanlibansach
                 fRent.MdiParent = this;
                 fRent.Show();
                 if (fUser != null) fUser.refreshProductUserDlg += fRent.refreshProductUser;
-                if (fSanpham != null) fSanpham.refreshProductUserDlg += fRent.refreshProductUser;
+                if (fSanpham != null)
+                {
+                    fSanpham.refreshProductUserDlg += fRent.refreshProductUser;
+                    fRent.refreshProductDlg += fSanpham.refreshProducts;
+                }
+            }
+        }
+
+        private void btnDangky_ItemClick_1(object sender, ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmDangky));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frmDangky f = new frmDangky();
+                f.MdiParent = this;
+                f.Show();
             }
         }
     }

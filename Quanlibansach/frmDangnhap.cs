@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -73,7 +74,8 @@ namespace Quanlibansach
                 if (setTxtUserInfo != null)
                 {
                     //Permission per = Program.getPermission(Program.user.id);
-                    setTxtUserInfo("Id = " + Program.user.id + " | Name: " + Program.user.name + " | Role: " + Program.user.role);
+                    Permission per = Program.getPermission(int.Parse(Program.user.role));
+                    setTxtUserInfo("Id = " + Program.user.id + " | Name: " + Program.user.name + " | Role: " + per.name);
                 }
                 this.Close();
             } catch

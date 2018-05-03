@@ -17,29 +17,35 @@ namespace Quanlibansach
         public static User user;
         public static String rootName = "Tất cả";
 
-        public static String path_AllCategories = "https://cuongmanh2311.000webhostapp.com/categories";
-        public static String path_AllProducts = "https://cuongmanh2311.000webhostapp.com/products";
-        public static String path_productsFromCategory = "https://cuongmanh2311.000webhostapp.com/products/cate_product?cate_id=";
-        public static String path_storeProduct = "https://cuongmanh2311.000webhostapp.com/products/store";
-        public static String path_updateProduct = "https://cuongmanh2311.000webhostapp.com/products/update";
-        public static String path_destroyProduct = "https://cuongmanh2311.000webhostapp.com/products/destroy/";
-        public static String path_signin = "https://cuongmanh2311.000webhostapp.com/users/login";
-        public static String path_AllPermission = "https://cuongmanh2311.000webhostapp.com/permission";
-        public static String path_storeUser = "https://cuongmanh2311.000webhostapp.com/users/store";
-        public static String path_updateUser = "https://cuongmanh2311.000webhostapp.com/users/update";
-        public static String path_destroyUser = "https://cuongmanh2311.000webhostapp.com/users/destroy/";
-        public static String path_getPermissionbelow = "https://cuongmanh2311.000webhostapp.com/users/permission";
-        public static String path_getUserbelow = "https://cuongmanh2311.000webhostapp.com/users/user_permission";
-        public static String path_storeCategory = "https://cuongmanh2311.000webhostapp.com/categories/store";
-        public static String path_updateCategory = "https://cuongmanh2311.000webhostapp.com/categories/update";
-        public static String path_destroyCategory = "https://cuongmanh2311.000webhostapp.com/categories/destroy/";
-        public static String path_AllRent = "https://cuongmanh2311.000webhostapp.com/rent";
-        public static String path_storeRent = "https://cuongmanh2311.000webhostapp.com/rent/store";
-        public static String path_updateRent = "https://cuongmanh2311.000webhostapp.com/rent/update";
-        public static String path_destroyRent = "https://cuongmanh2311.000webhostapp.com/rent/destroy/";
-        public static String path_storePermission = "https://cuongmanh2311.000webhostapp.com/permission/store";
-        public static String path_updatePermission = "https://cuongmanh2311.000webhostapp.com/permission/update";
-        public static String path_destroyPermission = "https://cuongmanh2311.000webhostapp.com/permission/destroy/";
+        public static String image_address = "https://sledge-hammer-liquo.000webhostapp.com/public/img/";
+
+        private static String server_address = "http://thoitranggymer.com";
+        
+
+        public static String path_AllCategories = server_address + "/categories";
+        public static String path_AllProducts = server_address + "/products/getall";
+        public static String path_productsFromCategory = server_address + "/products/cate_product?cate_id=";
+        public static String path_storeProduct = server_address + "/products/store";
+        public static String path_updateProduct = server_address + "/products/update";
+        public static String path_destroyProduct = server_address + "/products/destroy/";
+        public static String path_signin = server_address + "/users/login";
+        public static String path_AllPermission = server_address + "/permission";
+        public static String path_getPermissionbelow = server_address + "/users/permission";
+        public static String path_getPermission = server_address + "/permission/show/";
+        public static String path_storeUser = server_address + "/users/store";
+        public static String path_updateUser = server_address + "/users/update";
+        public static String path_destroyUser = server_address + "/users/destroy/";
+        public static String path_getUserbelow = server_address + "/users/user_permission";
+        public static String path_storeCategory = server_address + "/categories/store";
+        public static String path_updateCategory = server_address + "/categories/update";
+        public static String path_destroyCategory = server_address + "/categories/destroy/";
+        public static String path_AllRent = server_address + "/rent";
+        public static String path_storeRent = server_address + "/rent/store";
+        public static String path_updateRent = server_address + "/rent/update";
+        public static String path_destroyRent = server_address + "/rent/destroy/";
+        public static String path_storePermission = server_address + "/permission/store";
+        public static String path_updatePermission = server_address + "/permission/update";
+        public static String path_destroyPermission = server_address + "/permission/destroy/";
 
         public static Category[] getAllCategory()
         {
@@ -101,6 +107,23 @@ namespace Quanlibansach
                 DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(Permission[]));
                 object responseData = json.ReadObject(response.GetResponseStream());
                 return responseData as Permission[];
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return null;
+        }
+
+        public static Permission getPermission(int id)
+        {
+            try
+            {
+                HttpWebRequest request = WebRequest.CreateHttp(Program.path_getPermission + id);
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(Permission));
+                object responseData = json.ReadObject(response.GetResponseStream());
+                return responseData as Permission;
             }
             catch (Exception e)
             {
@@ -207,6 +230,10 @@ namespace Quanlibansach
                 {
                     throw new Exception("Error has been detected");
                 }
+                else if (int.Parse(user.role) > 3)
+                {
+                    throw new Exception("Customer không thể đăng nhập vào ứng dụng");
+                }
                 Program.user = user;
             }
             catch (Exception e)
@@ -219,6 +246,9 @@ namespace Quanlibansach
         [STAThread]
         static void Main()
         {
+
+            DevExpress.UserSkins.BonusSkins.Register();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmMain());

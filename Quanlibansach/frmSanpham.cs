@@ -25,6 +25,8 @@ namespace Quanlibansach
         Category[] arrCate;
         TreeNode rootNode;
 
+        bool ptbHinhsachChanged;
+
         public delegate void onRefreshProductUser();
         public onRefreshProductUser refreshProductUserDlg;
 
@@ -188,6 +190,7 @@ namespace Quanlibansach
             btnXoa.Enabled = false;
             btnGhi.Enabled = true;
             tvCategories.Enabled = false;
+            ptbHinhsach.ImageLocation = "NotFound";
 
             txtTensach.Text =
                 txtMasach.Text =
@@ -209,6 +212,7 @@ namespace Quanlibansach
             btnXoa.Enabled = false;
             btnGhi.Enabled = true;
             tvCategories.Enabled = false;
+            tgsTinhtrang.Enabled = false;
 
             txtTensach.Focus();
             status = mode.sua;
@@ -247,6 +251,11 @@ namespace Quanlibansach
                 try
                 {
                     Program.sendRequest(request, "POST", pd.toStringStore());
+                    //if (ptbHinhsachChanged)
+                    //{
+                    //    ptbHinhsachChanged = false;
+                    //    Upload(ptbHinhsach.Tag.ToString());
+                    //}
                     MessageBox.Show("Thêm sản phẩm thành công");
                     tvCategories.SelectedNode = tvCategories.Nodes[0];
                     if (refreshProductUserDlg != null) refreshProductUserDlg();
@@ -278,6 +287,21 @@ namespace Quanlibansach
                 return;
             }
             btnRefresh_ItemClick(sender, e);
+        }
+
+        private void Upload(string fileName)
+        {
+            var client = new WebClient();
+            var uri = new Uri(Program.image_address);
+            try
+            {
+                client.Headers.Add("fileName", System.IO.Path.GetFileName(fileName));
+                client.UploadFileAsync(uri, fileName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Upload hình thất bại\n" + ex.Message);
+            }
         }
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -353,6 +377,13 @@ namespace Quanlibansach
             cmbLoaisach.Properties.Items.Remove(Program.rootName);
         }
 
+        public void refreshProducts()
+        {
+            Bar bar1 = new Bar();
+            BarItemLink link = bar1.AddItem(btnRefresh);
+            btnRefresh_ItemClick(new object(), new ItemClickEventArgs(btnRefresh, link));
+        }
+
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             this.Close();
@@ -365,8 +396,9 @@ namespace Quanlibansach
             DialogResult result = fbd.ShowDialog();
             if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.FileName))
             {
-
                 ptbHinhsach.Image = Image.FromFile(fbd.FileName);
+                ptbHinhsach.Tag = fbd.FileName;
+                ptbHinhsachChanged = true;
             }
         }
     }

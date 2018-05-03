@@ -227,7 +227,7 @@
             this.groupControl2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl2.Location = new System.Drawing.Point(240, 39);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(1056, 211);
+            this.groupControl2.Size = new System.Drawing.Size(1056, 241);
             this.groupControl2.TabIndex = 9;
             this.groupControl2.Text = "Kho sách";
             // 
@@ -238,7 +238,7 @@
             this.gcProduct.MainView = this.gvProduct;
             this.gcProduct.MenuManager = this.barManager1;
             this.gcProduct.Name = "gcProduct";
-            this.gcProduct.Size = new System.Drawing.Size(1052, 189);
+            this.gcProduct.Size = new System.Drawing.Size(1052, 219);
             this.gcProduct.TabIndex = 0;
             this.gcProduct.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvProduct});
@@ -353,15 +353,15 @@
             this.gcChitiet.Controls.Add(this.txtTensach);
             this.gcChitiet.Controls.Add(this.ptbHinhsach);
             this.gcChitiet.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcChitiet.Location = new System.Drawing.Point(240, 250);
+            this.gcChitiet.Location = new System.Drawing.Point(240, 280);
             this.gcChitiet.Name = "gcChitiet";
-            this.gcChitiet.Size = new System.Drawing.Size(1056, 279);
+            this.gcChitiet.Size = new System.Drawing.Size(1056, 249);
             this.gcChitiet.TabIndex = 10;
             this.gcChitiet.Text = "Chi tiết";
             // 
             // cmbLoaisach
             // 
-            this.cmbLoaisach.Location = new System.Drawing.Point(248, 72);
+            this.cmbLoaisach.Location = new System.Drawing.Point(263, 72);
             this.cmbLoaisach.MenuManager = this.barManager1;
             this.cmbLoaisach.Name = "cmbLoaisach";
             this.cmbLoaisach.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -369,7 +369,7 @@
             this.cmbLoaisach.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cmbLoaisach.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cmbLoaisach.Size = new System.Drawing.Size(460, 30);
+            this.cmbLoaisach.Size = new System.Drawing.Size(445, 30);
             this.cmbLoaisach.TabIndex = 2;
             this.cmbLoaisach.SelectedIndexChanged += new System.EventHandler(this.cmbLoaisach_SelectedIndexChanged);
             // 
@@ -390,19 +390,19 @@
             // 
             // txtMota
             // 
-            this.txtMota.Location = new System.Drawing.Point(248, 183);
+            this.txtMota.Location = new System.Drawing.Point(263, 183);
             this.txtMota.MenuManager = this.barManager1;
             this.txtMota.Name = "txtMota";
             this.txtMota.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMota.Properties.Appearance.Options.UseFont = true;
-            this.txtMota.Size = new System.Drawing.Size(748, 84);
+            this.txtMota.Size = new System.Drawing.Size(733, 54);
             this.txtMota.TabIndex = 5;
             // 
             // labelControl7
             // 
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl7.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl7.Location = new System.Drawing.Point(134, 196);
+            this.labelControl7.Location = new System.Drawing.Point(174, 196);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(54, 23);
             this.labelControl7.TabIndex = 14;
@@ -412,7 +412,7 @@
             // 
             this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl6.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl6.Location = new System.Drawing.Point(134, 111);
+            this.labelControl6.Location = new System.Drawing.Point(174, 111);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(71, 23);
             this.labelControl6.TabIndex = 12;
@@ -420,14 +420,14 @@
             // 
             // txtGiatien
             // 
-            this.txtGiatien.Location = new System.Drawing.Point(248, 108);
+            this.txtGiatien.Location = new System.Drawing.Point(263, 108);
             this.txtGiatien.MenuManager = this.barManager1;
             this.txtGiatien.Name = "txtGiatien";
             this.txtGiatien.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGiatien.Properties.Appearance.Options.UseFont = true;
             this.txtGiatien.Properties.Mask.EditMask = "c";
             this.txtGiatien.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtGiatien.Size = new System.Drawing.Size(460, 30);
+            this.txtGiatien.Size = new System.Drawing.Size(445, 30);
             this.txtGiatien.TabIndex = 3;
             // 
             // labelControl5
@@ -476,7 +476,7 @@
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl3.Location = new System.Drawing.Point(134, 150);
+            this.labelControl3.Location = new System.Drawing.Point(174, 150);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(86, 23);
             this.labelControl3.TabIndex = 6;
@@ -484,19 +484,19 @@
             // 
             // txtGioithieu
             // 
-            this.txtGioithieu.Location = new System.Drawing.Point(248, 147);
+            this.txtGioithieu.Location = new System.Drawing.Point(263, 147);
             this.txtGioithieu.MenuManager = this.barManager1;
             this.txtGioithieu.Name = "txtGioithieu";
             this.txtGioithieu.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGioithieu.Properties.Appearance.Options.UseFont = true;
-            this.txtGioithieu.Size = new System.Drawing.Size(748, 30);
+            this.txtGioithieu.Size = new System.Drawing.Size(733, 30);
             this.txtGioithieu.TabIndex = 4;
             // 
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl2.Location = new System.Drawing.Point(134, 75);
+            this.labelControl2.Location = new System.Drawing.Point(174, 75);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(84, 23);
             this.labelControl2.TabIndex = 4;
@@ -506,7 +506,7 @@
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl1.Location = new System.Drawing.Point(134, 39);
+            this.labelControl1.Location = new System.Drawing.Point(174, 39);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(83, 23);
             this.labelControl1.TabIndex = 2;
@@ -514,12 +514,12 @@
             // 
             // txtTensach
             // 
-            this.txtTensach.Location = new System.Drawing.Point(248, 36);
+            this.txtTensach.Location = new System.Drawing.Point(263, 36);
             this.txtTensach.MenuManager = this.barManager1;
             this.txtTensach.Name = "txtTensach";
             this.txtTensach.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTensach.Properties.Appearance.Options.UseFont = true;
-            this.txtTensach.Size = new System.Drawing.Size(460, 30);
+            this.txtTensach.Size = new System.Drawing.Size(445, 30);
             this.txtTensach.TabIndex = 1;
             // 
             // ptbHinhsach
@@ -530,8 +530,8 @@
             this.ptbHinhsach.Margin = new System.Windows.Forms.Padding(0);
             this.ptbHinhsach.Name = "ptbHinhsach";
             this.ptbHinhsach.Padding = new System.Windows.Forms.Padding(15);
-            this.ptbHinhsach.Size = new System.Drawing.Size(120, 257);
-            this.ptbHinhsach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptbHinhsach.Size = new System.Drawing.Size(169, 227);
+            this.ptbHinhsach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ptbHinhsach.TabIndex = 0;
             this.ptbHinhsach.TabStop = false;
             this.ptbHinhsach.Click += new System.EventHandler(this.ptbHinhsach_Click);

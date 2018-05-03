@@ -74,7 +74,7 @@
             // 
             // txtTaikhoan
             // 
-            this.txtTaikhoan.EditValue = "thm@gmail.com";
+            this.txtTaikhoan.EditValue = "root@gmail.com";
             this.txtTaikhoan.Location = new System.Drawing.Point(167, 43);
             this.txtTaikhoan.Name = "txtTaikhoan";
             this.txtTaikhoan.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

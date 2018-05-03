@@ -14,6 +14,12 @@ namespace Quanlibansach
 {
     public partial class frmRent : Form
     {
+        enum mode { Them, Sua };
+        mode status;
+        StatusRent[] statusRent;
+
+        public delegate void onRefreshProductFrmSanpham();
+        public onRefreshProductFrmSanpham refreshProductDlg;
 
         public frmRent()
         {
@@ -23,6 +29,12 @@ namespace Quanlibansach
 
         private void frmRent_Load(object sender, EventArgs e)
         {
+            statusRent = new StatusRent[3];
+            statusRent[0] = new StatusRent(0, "Đang mượn");
+            statusRent[1] = new StatusRent(1, "Đã trả");
+            statusRent[2] = new StatusRent(2, "Quá hạn");
+            cmbTrangthai.Properties.Items.AddRange(statusRent);
+
             Bar bar1 = new Bar();
             BarItemLink link = bar1.AddItem(btnRefresh);
             btnRefresh_ItemClick(sender, new DevExpress.XtraBars.ItemClickEventArgs(btnRefresh, link));
@@ -34,11 +46,14 @@ namespace Quanlibansach
             if (vitri < 0) return;
             String pro_id = gvRent.GetRowCellValue(vitri, "pro_id").ToString();
             String user_id = gvRent.GetRowCellValue(vitri, "user_id").ToString();
+            int status_id = (int)gvRent.GetRowCellValue(vitri, "status");
+            cmbTensach.EditValue = cmbTenuser.EditValue = null;
             foreach (Product pd in cmbTensach.Properties.DataSource as Product[])
             {
                 if (pd.id.ToString().Equals(pro_id))
                 {
                     cmbTensach.EditValue = cmbTensach.Properties.GetRowByKeyValue(pd);
+
                     try
                     {
                         ptbHinhsach.LoadAsync(pd.image);
@@ -59,7 +74,16 @@ namespace Quanlibansach
                 }
             }
             txtMathue.Text = gvRent.GetRowCellValue(vitri, "id").ToString();
-            tgsTinhtrang.IsOn = gvRent.GetRowCellValue(vitri, "status").ToString() == "0" ? false : true;
+            foreach (StatusRent sr in statusRent)
+            {
+                if (sr.id == status_id)
+                {
+                    cmbTrangthai.SelectedItem = sr;
+                    break;
+                }
+            }
+            if (status_id == 1) btnXoa.Enabled = true;
+            else btnXoa.Enabled = false;
         }
 
         private void btnThem_ItemClick(object sender, ItemClickEventArgs e)
@@ -76,57 +100,85 @@ namespace Quanlibansach
                 txtMauser.Text = "";
             cmbTensach.EditValue =
             cmbTenuser.EditValue = null;
-            tgsTinhtrang.IsOn = false;
+            cmbTensach.Enabled =
+                cmbTenuser.Enabled = true;
+            cmbTrangthai.Enabled = false;
+
+            List<Product> list = new List<Product>(cmbTensach.Properties.DataSource as Product[]);
+            foreach (Product pd in list.ToArray())
+            {
+                if (pd.status == 1)
+                {
+                    list.Remove(pd);
+                }
+            }
+            cmbTensach.Properties.DataSource = list.ToArray();
+            ptbHinhsach.ImageLocation = "";
+            status = mode.Them;
         }
 
         private void btnSua_ItemClick(object sender, ItemClickEventArgs e)
         {
-            String tenSach = cmbTensach.Text;
-            String tenUser = cmbTenuser.Text;
-            DialogResult result = MessageBox.Show("Bạn có thật sự muốn update\nSách '" + tenSach + "' ngừng cho user '" + tenUser + "' mượn không?", "Trả lời đi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                string path = Program.path_updateRent + "?id=" + txtMathue.Text;
-                HttpWebRequest request = WebRequest.CreateHttp(path);
-                try
-                {
-                    Program.sendRequest(request, "POST", "?id=" + txtMathue.Text);
-                    MessageBox.Show("Update sản phẩm thành công");
-                    btnRefresh_ItemClick(sender, e);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Update sản phẩm thất bại\n" + ex.Message);
-                }
-            }
+            btnThem.Enabled = false;
+            btnSua.Enabled = false;
+            btnGhi.Enabled = true;
+            btnXoa.Enabled = false;
+            gcRent.Enabled = false;
+            cmbTrangthai.Enabled = true;
+            cmbTrangthai.Properties.Items.Remove(statusRent[2]);
+            cmbTensach.Enabled =
+                cmbTenuser.Enabled = false;
+            gcChitiet.Enabled = true;
+            status = mode.Sua;
         }
 
         private void btnGhi_ItemClick(object sender, ItemClickEventArgs e)
         {
             HttpWebRequest request;
             Rent rent;
-            if (cmbTensach.GetSelectedDataRow() == null)
+            if (status == mode.Them)
             {
-                MessageBox.Show("Tên sách chưa được chọn");
-                return;
-            }
-            if (cmbTenuser.GetSelectedDataRow() == null)
-            {
-                MessageBox.Show("Tên user chưa được chọn");
-                return;
-            }
+                if (cmbTensach.GetSelectedDataRow() == null)
+                {
+                    MessageBox.Show("Tên sách chưa được chọn");
+                    return;
+                }
+                if (cmbTenuser.GetSelectedDataRow() == null)
+                {
+                    MessageBox.Show("Tên user chưa được chọn");
+                    return;
+                }
 
-            rent = new Rent(txtMasach.Text, txtMauser.Text);
-            String url = Program.path_storeRent + rent.toStringStore();
-            request = WebRequest.CreateHttp(url);
-            try
+                rent = new Rent(txtMasach.Text, txtMauser.Text);
+                String url = Program.path_storeRent + rent.toStringStore();
+                request = WebRequest.CreateHttp(url);
+                try
+                {
+                    Program.sendRequest(request, "POST", rent.toStringStore());
+                    MessageBox.Show("Thêm cho thuê thành công");
+                    if (refreshProductDlg!=null) refreshProductDlg();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Thêm cho thuê thất bại\n" + ex.Message);
+                }
+            } else if (status == mode.Sua)
             {
-                Program.sendRequest(request, "POST", rent.toStringStore());
-                MessageBox.Show("Thêm cho thuê thành công");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Thêm cho thuê thất bại\n" + ex.Message);
+                rent = new Rent(txtMathue.Text.ToString(), (cmbTrangthai.SelectedItem as StatusRent).id, txtMasach.Text.ToString());
+                string path = Program.path_updateRent + rent.toStringUpdate();
+                request = WebRequest.CreateHttp(path);
+                try
+                {
+                    Program.sendRequest(request, "POST", "?id=" + txtMathue.Text);
+                    MessageBox.Show("Update sản phẩm thành công");
+                    btnRefresh_ItemClick(sender, e);
+                    if (refreshProductDlg != null) refreshProductDlg();
+                    cmbTrangthai.Properties.Items.Add(statusRent[2]);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Update sản phẩm thất bại\n" + ex.Message);
+                }
             }
             btnRefresh_ItemClick(sender, e);
         }
@@ -145,6 +197,7 @@ namespace Quanlibansach
                     Program.sendRequest(request);
                     MessageBox.Show("Xóa cho thuê thành công");
                     btnRefresh_ItemClick(sender, e);
+                    if (refreshProductDlg != null) refreshProductDlg();
                 }
                 catch (Exception ex)
                 {
@@ -175,6 +228,7 @@ namespace Quanlibansach
             cmbTensach.Properties.DataSource = products;
             User[] users = Program.getUserbelow(Program.user.role);
             cmbTenuser.Properties.DataSource = users;
+
             txtMasach.Text =
                 txtMauser.Text = "";
         }
@@ -188,6 +242,14 @@ namespace Quanlibansach
         {
             if (cmbTensach.EditValue == null) return;
             txtMasach.Text = ((Product)cmbTensach.GetSelectedDataRow()).id.ToString();
+            try
+            {
+                ptbHinhsach.LoadAsync(((Product)cmbTensach.GetSelectedDataRow()).image);
+            }
+            catch
+            {
+                ptbHinhsach.Image = null;
+            }
         }
 
         private void cmbTenuser_EditValueChanged(object sender, EventArgs e)

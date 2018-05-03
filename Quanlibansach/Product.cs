@@ -13,7 +13,11 @@ namespace Quanlibansach
         {
             this.name = name;
             this.cate_id = int.Parse(cate_id);
-            this.price = double.Parse(price);
+            try
+            {
+                this.price = double.Parse(price.Replace("$", ""));
+            }
+            catch { }
             this.intro = intro;
             this.description = description;
             this.image = image;

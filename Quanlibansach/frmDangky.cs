@@ -21,7 +21,7 @@ namespace Quanlibansach
 
         private void frmDangky_Load(object sender, EventArgs e)
         {
-            Permission[] arrPer = Program.getPermissionbelow(Program.user.role);
+            Permission[] arrPer = Program.getAllPermission();
             if (arrPer == null) return;
             foreach (Permission per in arrPer)
             {

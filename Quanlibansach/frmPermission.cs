@@ -88,7 +88,7 @@ namespace Quanlibansach
                 {
                     Program.sendRequest(request, "POST", per.toStringStore());
                     MessageBox.Show("Thêm quyền thành công");
-                    refreshPermission();
+                    if (refreshPermission != null) refreshPermission();
                 }
                 catch (Exception ex)
                 {
@@ -104,7 +104,7 @@ namespace Quanlibansach
                 {
                     Program.sendRequest(request, "POST", per.toStringUpdate());
                     MessageBox.Show("Sửa quyền thành công");
-                    refreshPermission();
+                    if (refreshPermission!=null) refreshPermission();
                 }
                 catch (Exception ex)
                 {
@@ -133,7 +133,7 @@ namespace Quanlibansach
                     Program.sendRequest(request);
                     MessageBox.Show("Xóa quyền thành công");
                     btnRefresh_ItemClick(sender, e);
-                    refreshPermission();
+                    if (refreshPermission != null) refreshPermission();
                 }
                 catch (Exception ex)
                 {
@@ -144,7 +144,7 @@ namespace Quanlibansach
 
         private void btnRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Permission[] per = Program.getAllPermission();
+            Permission[] per = Program.getPermissionbelow(Program.user.role);
             if (per == null) return;
             gcPermission.DataSource = per;
             GvPermission_FocusedRowChanged(sender, new DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs(gvPermission.FocusedRowHandle,gvPermission.FocusedRowHandle));

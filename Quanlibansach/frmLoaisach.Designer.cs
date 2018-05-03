@@ -195,9 +195,9 @@
             this.gcChitiet.Controls.Add(this.labelControl2);
             this.gcChitiet.Controls.Add(this.ptbHinhsach);
             this.gcChitiet.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcChitiet.Location = new System.Drawing.Point(0, 250);
+            this.gcChitiet.Location = new System.Drawing.Point(0, 330);
             this.gcChitiet.Name = "gcChitiet";
-            this.gcChitiet.Size = new System.Drawing.Size(1079, 271);
+            this.gcChitiet.Size = new System.Drawing.Size(1079, 191);
             this.gcChitiet.TabIndex = 12;
             this.gcChitiet.Text = "Chi tiết";
             // 
@@ -243,7 +243,7 @@
             this.txtMota.Name = "txtMota";
             this.txtMota.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMota.Properties.Appearance.Options.UseFont = true;
-            this.txtMota.Size = new System.Drawing.Size(748, 164);
+            this.txtMota.Size = new System.Drawing.Size(748, 79);
             this.txtMota.TabIndex = 5;
             // 
             // labelControl7
@@ -316,7 +316,7 @@
             this.ptbHinhsach.Margin = new System.Windows.Forms.Padding(0);
             this.ptbHinhsach.Name = "ptbHinhsach";
             this.ptbHinhsach.Padding = new System.Windows.Forms.Padding(15);
-            this.ptbHinhsach.Size = new System.Drawing.Size(130, 249);
+            this.ptbHinhsach.Size = new System.Drawing.Size(130, 169);
             this.ptbHinhsach.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.ptbHinhsach.TabIndex = 0;
             this.ptbHinhsach.TabStop = false;
@@ -327,7 +327,7 @@
             this.groupControl2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl2.Location = new System.Drawing.Point(0, 39);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(1079, 211);
+            this.groupControl2.Size = new System.Drawing.Size(1079, 291);
             this.groupControl2.TabIndex = 11;
             this.groupControl2.Text = "Loại sách";
             // 
@@ -343,7 +343,7 @@
             this.tlLoaisach.Name = "tlLoaisach";
             this.tlLoaisach.OptionsBehavior.PopulateServiceColumns = true;
             this.tlLoaisach.ParentFieldName = "parent_id";
-            this.tlLoaisach.Size = new System.Drawing.Size(1075, 189);
+            this.tlLoaisach.Size = new System.Drawing.Size(1075, 269);
             this.tlLoaisach.TabIndex = 0;
             this.tlLoaisach.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.tlLoaisach_FocusedNodeChanged);
             // 
